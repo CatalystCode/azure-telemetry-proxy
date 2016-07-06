@@ -5,7 +5,7 @@ var client = appInsights.getClient(instrumentationKey);
 module.exports = function (context, message) {
     // Sending all data to application insight analytics
     context.log('message:', message);
-    client.trackEvent("telemetry event", message);
+    client.trackEvent("telemetry event", { message: message });
     // Later... Send data to mongodb as well
     // Inform function completion
     context.done();
