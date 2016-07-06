@@ -14,13 +14,13 @@ export = function (context, message: IQueueMessage) {
     return context.done(new Error("message is not in the right format"));
   }
 
-  var intent = message.intents && message.intents[0] || { intent: "NONE", score: 0 };
-  var entity = message.entities && message.entities[0] || { entity: "NONE", score: 0};
+  var intent = message.data.intents && message.data.intents[0] || { intent: "NONE", score: 0 };
+  var entity = message.data.entities && message.data.entities[0] || { entity: "NONE", score: 0};
 
   var telemetryMessage: ITelemetry = {
     id: message.deviceId,
     data: {
-      query: message.query,
+      query: message.data.query,
       timestamp: message.timestamp,
       intent: "MISSING", //intent.source_intent, //(basic intent)
       utterance: intent.intent,
@@ -41,5 +41,5 @@ export = function (context, message: IQueueMessage) {
 };
 
 function validateMessage(message: IQueueMessage) {
-  return message && message.query;
+  return message && message.data && message.data.query;
 }

@@ -19,19 +19,21 @@ interface IQueueMessage {
   deviceId: string,
   timestamp: number,
   source: string,
-  query: string,
-  entities: { 
-    endIndex: number, 
-    entity: string,
-    score: number,
-    startIndex: number,
-    type: string
-  }[],
-  intents: {
-    actions: any,
-    intent: string,
-    score: number
-  }[],
-  queryEntities: string[],
-  queryIntents: string[]
+  data: {
+    query: string,
+    entities: { 
+      endIndex: number, 
+      entity: string,
+      score: number,
+      startIndex: number,
+      type: string
+    }[],
+    intents: {
+      actions: any,
+      intent: string,
+      score: number
+    }[],
+    queryEntities: string[],
+    queryIntents: string[]
+  }
 }
