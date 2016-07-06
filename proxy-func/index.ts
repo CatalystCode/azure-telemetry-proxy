@@ -9,8 +9,6 @@ export = function (context, message: IQueueMessage) {
 
   // Sending all data to application insight analytics
   context.log('message:', message);
-  context.log('entities:', message && message.data && message.data.entities);
-  context.log('intents:', message && message.data && message.data.intents);
 
   if (!validateMessage(message)) {
     return context.done(new Error("message is not in the right format"));
