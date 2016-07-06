@@ -32,7 +32,7 @@ export = function (context, message: IQueueMessage) {
     }
   };
 
-  client.trackEvent("RBT:" + telemetryMessage.id, <any>telemetryMessage.data);
+  client.trackEvent("RID:" + telemetryMessage.id, <any>telemetryMessage.data);
 
   // Later... Send data to mongodb as well
 

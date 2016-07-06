@@ -27,7 +27,7 @@ module.exports = function (context, message) {
             main_entity_score: entity.score
         }
     };
-    client.trackEvent("RBT:" + telemetryMessage.id, telemetryMessage.data);
+    client.trackEvent("RID:" + telemetryMessage.id, telemetryMessage.data);
     // Later... Send data to mongodb as well
     // Inform function completion
     context.done();
