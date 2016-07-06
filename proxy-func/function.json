@@ -1,0 +1,12 @@
+{
+  "bindings": [
+    {
+      "connection": "AzureWebJobsStorage",
+      "queueName": "telemetry",
+      "name": "message",
+      "type": "queueTrigger",
+      "direction": "in"
+    }
+  ],
+  "disabled": false
+}
