@@ -16,7 +16,7 @@ module.exports = function (context, message) {
     var telemetryMessage = {
         id: message.deviceId,
         data: {
-            query: message.data.query,
+            textquery: message.data.query,
             timestamp: message.timestamp,
             intent: "MISSING",
             utterance: intent.intent,

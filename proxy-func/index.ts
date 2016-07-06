@@ -20,7 +20,7 @@ export = function (context, message: IQueueMessage) {
   var telemetryMessage: ITelemetry = {
     id: message.deviceId,
     data: {
-      query: message.data.query,
+      textquery: message.data.query,
       timestamp: message.timestamp,
       intent: "MISSING", //intent.source_intent, //(basic intent)
       utterance: intent.intent,

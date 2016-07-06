@@ -3,7 +3,7 @@
 interface ITelemetry {
 	id: string,
 	data: {
-		query: string,
+		textquery: string,
 		timestamp: number,
 		intent: string, //(basic intent)
 		utterance: string,
