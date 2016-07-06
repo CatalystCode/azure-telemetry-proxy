@@ -1,4 +1,5 @@
 var appInsights = require("applicationinsights");
+var moment = require("moment");
 // Connecting to application insights
 var instrumentationKey = process.env.AppInsightInstrumentationKey;
 var client = appInsights.getClient(instrumentationKey);
@@ -17,7 +18,7 @@ module.exports = function (context, message) {
         id: message.deviceId,
         data: {
             textquery: message.data.query,
-            timestamp: message.timestamp,
+            timestamp: moment(message.timestamp).utc().format(),
             intent: "MISSING",
             utterance: intent.intent,
             utterance_score: intent.score,

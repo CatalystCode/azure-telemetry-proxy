@@ -1,4 +1,5 @@
 import appInsights = require("applicationinsights");
+import moment = require("moment");
 
 // Connecting to application insights
 var instrumentationKey = process.env.AppInsightInstrumentationKey;
@@ -21,7 +22,7 @@ export = function (context, message: IQueueMessage) {
     id: message.deviceId,
     data: {
       textquery: message.data.query,
-      timestamp: message.timestamp,
+      timestamp: moment(message.timestamp).utc().format(),
       intent: "MISSING", //intent.source_intent, //(basic intent)
       utterance: intent.intent,
       utterance_score: intent.score,
