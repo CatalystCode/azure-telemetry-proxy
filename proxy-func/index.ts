@@ -19,8 +19,8 @@ export = function (context, message: IQueueMessage) {
   var entity = message.data.entities && message.data.entities[0] || { entity: "NONE", score: 0};
 
   context.bindings.tableBinding = {
-    id: message.deviceId,
-    key: moment(message.timestamp).unix(),
+    partitionKey: message.deviceId,
+    rowKey: moment(message.timestamp).unix(),
     query: message.data.query,
     etimestamp: moment(message.timestamp).utc().format(),
     intent: "MISSING", //intent.source_intent, //(basic intent)

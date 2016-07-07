@@ -15,8 +15,8 @@ module.exports = function (context, message) {
     var intent = message.data.intents && message.data.intents[0] || { intent: "NONE", score: 0 };
     var entity = message.data.entities && message.data.entities[0] || { entity: "NONE", score: 0 };
     context.bindings.tableBinding = {
-        id: message.deviceId,
-        key: moment(message.timestamp).unix(),
+        partitionKey: message.deviceId,
+        rowKey: moment(message.timestamp).unix(),
         query: message.data.query,
         etimestamp: moment(message.timestamp).utc().format(),
         intent: "MISSING",
