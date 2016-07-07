@@ -9,8 +9,8 @@
     },
     {
       "tableName": "telemetry",
-      "partitionKey": "id",
-      "rowKey": "key",
+      "partitionKey": "{id}",
+      "rowKey": "{key}",
       "connection": "AzureWebJobsStorage",
       "name": "tableBinding",
       "type": "table",
