@@ -18,22 +18,19 @@ export = function (context, message: IQueueMessage) {
   var intent = message.data.intents && message.data.intents[0] || { intent: "NONE", score: 0 };
   var entity = message.data.entities && message.data.entities[0] || { entity: "NONE", score: 0};
 
-  var telemetryMessage: ITelemetry = {
+  context.bindings.tableBinding = {
     id: message.deviceId,
-    data: {
-      textquery: message.data.query,
-      timestamp: moment(message.timestamp).utc().format(),
-      intent: "MISSING", //intent.source_intent, //(basic intent)
-      utterance: intent.intent,
-      utterance_score: intent.score,
-      accepted_by_bot: true, //message.accepted,
-      source: message.source,
-      main_entity: entity.entity,
-      main_entity_score: entity.score
-    }
-  };
-
-  client.trackEvent("RID:" + telemetryMessage.id, <any>telemetryMessage.data);
+    key: moment(message.timestamp).unix(),
+    query: message.data.query,
+    etimestamp: moment(message.timestamp).utc().format(),
+    intent: "MISSING", //intent.source_intent, //(basic intent)
+    utterance: intent.intent,
+    utterance_score: intent.score,
+    accepted_by_bot: true, //message.accepted,
+    source: message.source,
+    main_entity: entity.entity,
+    main_entity_score: entity.score
+  }
 
   // Later... Send data to mongodb as well
 

@@ -14,21 +14,19 @@ module.exports = function (context, message) {
     }
     var intent = message.data.intents && message.data.intents[0] || { intent: "NONE", score: 0 };
     var entity = message.data.entities && message.data.entities[0] || { entity: "NONE", score: 0 };
-    var telemetryMessage = {
+    context.bindings.tableBinding = {
         id: message.deviceId,
-        data: {
-            textquery: message.data.query,
-            timestamp: moment(message.timestamp).utc().format(),
-            intent: "MISSING",
-            utterance: intent.intent,
-            utterance_score: intent.score,
-            accepted_by_bot: true,
-            source: message.source,
-            main_entity: entity.entity,
-            main_entity_score: entity.score
-        }
+        key: moment(message.timestamp).unix(),
+        query: message.data.query,
+        etimestamp: moment(message.timestamp).utc().format(),
+        intent: "MISSING",
+        utterance: intent.intent,
+        utterance_score: intent.score,
+        accepted_by_bot: true,
+        source: message.source,
+        main_entity: entity.entity,
+        main_entity_score: entity.score
     };
-    client.trackEvent("RID:" + telemetryMessage.id, telemetryMessage.data);
     // Later... Send data to mongodb as well
     // Inform function completion
     context.done();
